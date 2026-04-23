@@ -39,7 +39,7 @@ PALETTES = {
 }
 
 CELL = 12
-ANGLE_DEG = 18
+ANGLE_DEG = 22
 GAP = 2
 SHADE_LEFT = 0.88
 SHADE_RIGHT = 0.74
@@ -221,13 +221,17 @@ def cube_faces_svg(gx: int, gy: int, level: int, top_color: str) -> str:
 
 def render_top_right_stats(x: float, y: float, palette_name: str, stats: Stats) -> str:
     text = TEXT_COLORS[palette_name]
+    number_size = 34
+    label_size = 10
+    number_y = y + number_size - 2
+    label_y = number_y + 12
     return "\n".join(
         [
-            f'<text x="{x:.2f}" y="{y:.2f}" text-anchor="end" '
-            f'font-family=\'{FONT_STACK}\' font-size="30" font-weight="700" fill="{text["accent"]}">'
+            f'<text x="{x:.2f}" y="{number_y:.2f}" text-anchor="end" '
+            f'font-family=\'{FONT_STACK}\' font-size="{number_size}" font-weight="700" fill="{text["accent"]}">'
             f"{stats.total_commits:,}</text>",
-            f'<text x="{x:.2f}" y="{y + 11:.2f}" text-anchor="end" '
-            f'font-family=\'{FONT_STACK}\' font-size="9" fill="{text["secondary"]}" letter-spacing="0.8">'
+            f'<text x="{x:.2f}" y="{label_y:.2f}" text-anchor="end" '
+            f'font-family=\'{FONT_STACK}\' font-size="{label_size}" fill="{text["secondary"]}" letter-spacing="0.8">'
             f"TOTAL COMMITS</text>",
         ]
     )
@@ -239,16 +243,17 @@ def render_bottom_left_stats(x: float, y: float, palette_name: str, stats: Stats
     parts = []
 
     chart_x = x
-    chart_y = y
-    chart_height = 30
-    bar_width = 8
+    label_y = y
+    chart_y = y - 14
+    chart_height = 34
+    bar_width = 9
     bar_gap = 3
     max_value = max(stats.day_of_week_totals) or 1
     day_labels = ["S", "M", "T", "W", "T", "F", "S"]
 
     parts.append(
-        f'<text x="{chart_x:.2f}" y="{chart_y - chart_height - 6:.2f}" '
-        f'font-family=\'{FONT_STACK}\' font-size="9" fill="{text["secondary"]}" letter-spacing="0.8">'
+        f'<text x="{chart_x:.2f}" y="{chart_y - chart_height - 5:.2f}" '
+        f'font-family=\'{FONT_STACK}\' font-size="10" fill="{text["secondary"]}" letter-spacing="0.8">'
         f"MOST ACTIVE DAYS</text>"
     )
 
@@ -263,8 +268,8 @@ def render_bottom_left_stats(x: float, y: float, palette_name: str, stats: Stats
             f'rx="1" fill="{color}"/>'
         )
         parts.append(
-            f'<text x="{bar_x + bar_width / 2:.2f}" y="{chart_y + 11:.2f}" text-anchor="middle" '
-            f'font-family=\'{FONT_STACK}\' font-size="9" fill="{text["secondary"]}">{day_labels[idx]}</text>'
+            f'<text x="{bar_x + bar_width / 2:.2f}" y="{label_y:.2f}" text-anchor="middle" '
+            f'font-family=\'{FONT_STACK}\' font-size="10" fill="{text["secondary"]}">{day_labels[idx]}</text>'
         )
 
     return "\n".join(parts)
@@ -292,22 +297,22 @@ def render_svg(cells: list[Cell], palette_name: str, stats: Stats, weeks: int) -
     graph_min_y = min(ys)
     graph_max_y = max(ys)
 
-    pad = 4
-    extra_top = 4
-    extra_left = 8
-    extra_right = 8
-    extra_bottom = 42
+    pad = 3
+    extra_top = 3
+    extra_left = 3
+    extra_right = 3
+    extra_bottom = 3
 
     min_x = graph_min_x - pad - extra_left
     min_y = graph_min_y - pad - extra_top
     width = (graph_max_x - graph_min_x) + 2 * pad + extra_left + extra_right
     height = (graph_max_y - graph_min_y) + 2 * pad + extra_top + extra_bottom
 
-    tr_anchor_x = graph_max_x - 10
-    tr_anchor_y = graph_min_y + 30
+    tr_anchor_x = graph_max_x
+    tr_anchor_y = graph_min_y
 
-    bl_left = graph_min_x + 10
-    bl_bottom = graph_max_y + 34
+    bl_left = graph_min_x
+    bl_bottom = graph_max_y
 
     parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{min_x:.2f} {min_y:.2f} {width:.2f} {height:.2f}" '
@@ -427,7 +432,9 @@ def normalize_languages(totals: Counter[str], top_n: int = 4) -> list[tuple[str,
 
 def fetch_live_data(token: str, login: str) -> tuple[list[Cell], Stats, int]:
     today = date.today()
-    rolling_start = today - timedelta(days=364)
+    # GitHub validates contribution windows strictly; keeping the range a
+    # little under a full year avoids occasional off-by-one rejections.
+    rolling_start = today - timedelta(days=363)
 
     current_payload = fetch_range_payload(token, login, rolling_start, today)
     contribution_years = current_payload["contributionYears"]
@@ -436,6 +443,8 @@ def fetch_live_data(token: str, login: str) -> tuple[list[Cell], Stats, int]:
     for year in contribution_years:
         year_start = max(date(year, 1, 1), rolling_start)
         year_end = min(date(year, 12, 31), today)
+        if year_start > year_end:
+            continue
         year_payload = fetch_range_payload(token, login, year_start, year_end)
         total_commits += year_payload["totalCommitContributions"]
 
