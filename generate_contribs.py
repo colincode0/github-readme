@@ -39,7 +39,7 @@ PALETTES = {
 }
 
 CELL = 12
-ANGLE_DEG = 22
+ANGLE_DEG = 18
 GAP = 2
 SHADE_LEFT = 0.88
 SHADE_RIGHT = 0.74
@@ -224,10 +224,10 @@ def render_top_right_stats(x: float, y: float, palette_name: str, stats: Stats) 
     return "\n".join(
         [
             f'<text x="{x:.2f}" y="{y:.2f}" text-anchor="end" '
-            f'font-family=\'{FONT_STACK}\' font-size="26" font-weight="700" fill="{text["accent"]}">'
+            f'font-family=\'{FONT_STACK}\' font-size="30" font-weight="700" fill="{text["accent"]}">'
             f"{stats.total_commits:,}</text>",
             f'<text x="{x:.2f}" y="{y + 11:.2f}" text-anchor="end" '
-            f'font-family=\'{FONT_STACK}\' font-size="8" fill="{text["secondary"]}" letter-spacing="0.8">'
+            f'font-family=\'{FONT_STACK}\' font-size="9" fill="{text["secondary"]}" letter-spacing="0.8">'
             f"TOTAL COMMITS</text>",
         ]
     )
@@ -240,15 +240,15 @@ def render_bottom_left_stats(x: float, y: float, palette_name: str, stats: Stats
 
     chart_x = x
     chart_y = y
-    chart_height = 26
-    bar_width = 7
+    chart_height = 30
+    bar_width = 8
     bar_gap = 3
     max_value = max(stats.day_of_week_totals) or 1
     day_labels = ["S", "M", "T", "W", "T", "F", "S"]
 
     parts.append(
         f'<text x="{chart_x:.2f}" y="{chart_y - chart_height - 6:.2f}" '
-        f'font-family=\'{FONT_STACK}\' font-size="8" fill="{text["secondary"]}" letter-spacing="0.8">'
+        f'font-family=\'{FONT_STACK}\' font-size="9" fill="{text["secondary"]}" letter-spacing="0.8">'
         f"MOST ACTIVE DAYS</text>"
     )
 
@@ -264,7 +264,7 @@ def render_bottom_left_stats(x: float, y: float, palette_name: str, stats: Stats
         )
         parts.append(
             f'<text x="{bar_x + bar_width / 2:.2f}" y="{chart_y + 11:.2f}" text-anchor="middle" '
-            f'font-family=\'{FONT_STACK}\' font-size="8" fill="{text["secondary"]}">{day_labels[idx]}</text>'
+            f'font-family=\'{FONT_STACK}\' font-size="9" fill="{text["secondary"]}">{day_labels[idx]}</text>'
         )
 
     return "\n".join(parts)
