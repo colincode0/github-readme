@@ -39,7 +39,7 @@ PALETTES = {
 }
 
 CELL = 12
-ANGLE_DEG = 18
+ANGLE_DEG = 20
 GAP = 2
 SHADE_LEFT = 0.88
 SHADE_RIGHT = 0.74
@@ -244,18 +244,18 @@ def render_bottom_left_stats(x: float, y: float, palette_name: str, stats: Stats
 
     chart_x = x
     label_y = y
-    chart_y = y - 16
-    chart_height = 40
-    bar_width = 10
-    bar_gap = 3
-    tagline_y = label_y + 16
+    chart_y = y - 18
+    chart_height = 54
+    bar_width = 12
+    bar_gap = 4
+    tagline_y = label_y + 18
     max_value = max(stats.day_of_week_totals) or 1
     day_labels = ["S", "M", "T", "W", "T", "F", "S"]
 
     parts.append(
         f'<text x="{chart_x:.2f}" y="{chart_y - chart_height - 5:.2f}" '
-        f'font-family=\'{FONT_STACK}\' font-size="11" fill="{text["secondary"]}" letter-spacing="0.8">'
-        f"MOST ACTIVE DAYS</text>"
+        f'font-family=\'{FONT_STACK}\' font-size="12" fill="{text["secondary"]}" letter-spacing="0.3">'
+        f"Most active days</text>"
     )
 
     for idx, value in enumerate(stats.day_of_week_totals):
@@ -270,18 +270,18 @@ def render_bottom_left_stats(x: float, y: float, palette_name: str, stats: Stats
         )
         parts.append(
             f'<text x="{bar_x + bar_width / 2:.2f}" y="{label_y:.2f}" text-anchor="middle" '
-            f'font-family=\'{FONT_STACK}\' font-size="10" fill="{text["secondary"]}">{day_labels[idx]}</text>'
+            f'font-family=\'{FONT_STACK}\' font-size="11" fill="{text["secondary"]}">{day_labels[idx]}</text>'
         )
 
     parts.append(
         f'<text x="{chart_x:.2f}" y="{tagline_y:.2f}" '
-        f'font-family=\'{FONT_STACK}\' font-size="8" fill="{text["secondary"]}" letter-spacing="0.6">'
-        f"DATA PULLED DAILY FROM GITHUB</text>"
+        f'font-family=\'{FONT_STACK}\' font-size="9" fill="{text["secondary"]}">'
+        f"Data pulled daily from GitHub.</text>"
     )
     parts.append(
         f'<text x="{chart_x:.2f}" y="{tagline_y + 10:.2f}" '
-        f'font-family=\'{FONT_STACK}\' font-size="8" fill="{text["secondary"]}" letter-spacing="0.6">'
-        f"CONTRIBUTION ACTIVITY</text>"
+        f'font-family=\'{FONT_STACK}\' font-size="9" fill="{text["secondary"]}">'
+        f"Rolling last-12-month activity.</text>"
     )
 
     return "\n".join(parts)
@@ -313,7 +313,7 @@ def render_svg(cells: list[Cell], palette_name: str, stats: Stats, weeks: int) -
     extra_top = 3
     extra_left = 3
     extra_right = 3
-    extra_bottom = 28
+    extra_bottom = 24
 
     min_x = graph_min_x - pad - extra_left
     min_y = graph_min_y - pad - extra_top
@@ -324,7 +324,7 @@ def render_svg(cells: list[Cell], palette_name: str, stats: Stats, weeks: int) -
     tr_anchor_y = graph_min_y
 
     bl_left = graph_min_x
-    bl_bottom = graph_max_y
+    bl_bottom = graph_max_y - 6
 
     parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{min_x:.2f} {min_y:.2f} {width:.2f} {height:.2f}" '
