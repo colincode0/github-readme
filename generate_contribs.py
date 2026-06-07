@@ -17,6 +17,7 @@ import sys
 import urllib.error
 import urllib.request
 from dataclasses import dataclass
+from datetime import date, timedelta
 from pathlib import Path
 
 
@@ -87,12 +88,17 @@ query($login: String!) {
 """
 
 
+MONTH_ABBR = ["", "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+              "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+
+
 @dataclass
 class Cell:
     week: int
     day: int
     level: int
     count: int
+    date_str: str = ""
 
 
 @dataclass
@@ -104,6 +110,8 @@ class Stats:
 def generate_mock_data(weeks: int = 53) -> list[Cell]:
     random.seed(42)
     cells: list[Cell] = []
+    # Start roughly one year ago from a known Sunday
+    epoch = date(2025, 6, 1)
     for w in range(weeks):
         streak = random.random() < 0.15
         for d in range(7):
@@ -132,7 +140,8 @@ def generate_mock_data(weeks: int = 53) -> list[Cell]:
                 count = random.randint(9, 15)
             else:
                 count = random.randint(16, 28)
-            cells.append(Cell(w, d, level, count))
+            day_date = epoch + timedelta(weeks=w, days=d)
+            cells.append(Cell(w, d, level, count, day_date.isoformat()))
     return cells
 
 
@@ -230,6 +239,42 @@ def render_top_right_stats(x: float, y: float, palette_name: str, stats: Stats) 
     )
 
 
+def render_month_labels(cells: list[Cell], palette_name: str, weeks: int) -> str:
+    step = CELL + GAP
+    max_height = max((height_from_count(cell.count) for cell in cells), default=0)
+    label_z = max_height + 8
+    text = TEXT_COLORS[palette_name]
+
+    seen_months: set[int] = set()
+    month_week_pairs: list[tuple[int, int]] = []
+
+    for cell in sorted(cells, key=lambda c: (c.week, c.day)):
+        if not cell.date_str:
+            continue
+        try:
+            m = date.fromisoformat(cell.date_str).month
+        except (ValueError, TypeError):
+            continue
+        if m not in seen_months:
+            seen_months.add(m)
+            month_week_pairs.append((m, cell.week))
+
+    if not month_week_pairs:
+        return ""
+
+    parts = []
+    for month_num, week_idx in month_week_pairs:
+        gx = week_idx * step + CELL / 2
+        sx, sy = project(gx, 0, label_z)
+        parts.append(
+            f'<text x="{sx:.2f}" y="{sy:.2f}" text-anchor="middle" '
+            f'font-family=\'{FONT_STACK}\' font-size="8" fill="{text["secondary"]}">'
+            f"{MONTH_ABBR[month_num]}</text>"
+        )
+
+    return "\n".join(parts)
+
+
 def render_bottom_left_stats(x: float, y: float, palette_name: str, stats: Stats) -> str:
     palette = PALETTES[palette_name]
     text = TEXT_COLORS[palette_name]
@@ -303,7 +348,7 @@ def render_svg(cells: list[Cell], palette_name: str, stats: Stats, weeks: int) -
     graph_max_y = max(ys)
 
     pad = 3
-    extra_top = 3
+    extra_top = 14
     extra_left = 3
     extra_right = 3
     extra_bottom = 40
@@ -328,6 +373,7 @@ def render_svg(cells: list[Cell], palette_name: str, stats: Stats, weeks: int) -
         color = palette["empty"] if cell.level == 0 else palette["levels"][cell.level - 1]
         parts.append(cube_faces_svg(cell.week, cell.day, height_from_count(cell.count), color))
 
+    parts.append(render_month_labels(cells, palette_name, weeks))
     parts.append(render_top_right_stats(tr_anchor_x, tr_anchor_y, palette_name, stats))
     parts.append(render_bottom_left_stats(bl_left, bl_bottom, palette_name, stats))
     parts.append("</svg>")
@@ -378,8 +424,9 @@ def build_cells_and_days(weeks: list[dict[str, object]]) -> tuple[list[Cell], li
         for day_index, day in enumerate(week["contributionDays"]):
             level = LEVEL_MAP[day["contributionLevel"]]
             count = day["contributionCount"]
+            date_val = day.get("date", "")
 
-            cells.append(Cell(week=week_index, day=day_index, level=level, count=count))
+            cells.append(Cell(week=week_index, day=day_index, level=level, count=count, date_str=date_val))
             day_totals[day_index] += count
 
     return cells, day_totals
