@@ -18,6 +18,14 @@ Your actual profile README should live in a separate public repository named exa
 3. The GitHub Actions workflow runs once a day and commits refreshed SVGs back to this repo.
 4. Your profile README embeds those SVGs from the raw GitHub URLs.
 
+## Features
+
+- **3D isometric contribution graph** — each day is a cube whose height reflects contribution volume
+- **Dark & light mode** — automatic via `prefers-color-scheme`
+- **Monthly labels** — month abbreviations appear along the top axis, parsed from real calendar data
+- **Activity summary** — total contributions counter and a most-active-days bar chart
+- **Mock preview** — generate sample SVGs without a GitHub token for testing
+
 ## Height And Color Model
 
 This project intentionally treats color and height differently:
