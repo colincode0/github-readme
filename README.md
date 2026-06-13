@@ -77,7 +77,7 @@ Your fork becomes the public asset repo that stores the generated SVGs. Example:
 
 In `your-username/github-readme`:
 
-1. Go to `Settings -> Secrets and variables -> Actions`
+1. Go to `Settings -> Developer settings → Personal access tokens → Tokens (classic)`
 2. Create a repository secret named `GH_README_TOKEN`
 3. Paste a GitHub personal access token
 
