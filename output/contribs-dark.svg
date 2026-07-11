@@ -751,6 +751,7 @@
 <polygon points="631.47,276.35 631.47,261.35 642.75,257.25 642.75,272.25" fill="#0a321e"/>
 <polygon points="592.01,272.93 603.28,277.04 592.01,281.14 580.73,277.04" fill="#161b22"/>
 <polygon points="618.32,272.93 629.59,277.04 618.32,281.14 607.04,277.04" fill="#161b22"/>
+<polygon points="605.16,277.72 616.44,281.82 605.16,285.93 593.89,281.82" fill="#161b22"/>
 <text x="697.25" y="14.00" text-anchor="end" font-family='-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif' font-size="34" font-weight="700" fill="#39d353">816</text>
 <text x="697.25" y="26.00" text-anchor="end" font-family='-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif' font-size="10" fill="#7d8590" letter-spacing="0.8">TOTAL CONTRIBUTIONS</text>
 <rect x="-92.09" y="222.35" width="12" height="16.95" rx="1" fill="#006d32"/>
