@@ -714,10 +714,12 @@
 <polygon points="646.51,253.09 646.51,235.09 657.78,239.20 657.78,257.20" fill="#38ac57"/>
 <polygon points="657.78,257.20 657.78,239.20 669.06,235.09 669.06,253.09" fill="#2f9149"/>
 <polygon points="565.69,253.78 576.97,257.88 565.69,261.99 554.42,257.88" fill="#ebedf0"/>
-<polygon points="670.94,253.78 682.22,257.88 670.94,261.99 659.66,257.88" fill="#ebedf0"/>
 <polygon points="539.38,245.78 550.66,249.88 539.38,253.99 528.11,249.88" fill="#9be9a8"/>
 <polygon points="528.11,257.88 528.11,249.88 539.38,253.99 539.38,261.99" fill="#88cd93"/>
 <polygon points="539.38,261.99 539.38,253.99 550.66,249.88 550.66,257.88" fill="#72ac7c"/>
+<polygon points="670.94,242.78 682.22,246.88 670.94,250.99 659.66,246.88" fill="#9be9a8"/>
+<polygon points="659.66,257.88 659.66,246.88 670.94,250.99 670.94,261.99" fill="#88cd93"/>
+<polygon points="670.94,261.99 670.94,250.99 682.22,246.88 682.22,257.88" fill="#72ac7c"/>
 <polygon points="618.32,235.78 629.59,239.88 618.32,243.99 607.04,239.88" fill="#40c463"/>
 <polygon points="607.04,257.88 607.04,239.88 618.32,243.99 618.32,261.99" fill="#38ac57"/>
 <polygon points="618.32,261.99 618.32,243.99 629.59,239.88 629.59,257.88" fill="#2f9149"/>
@@ -737,6 +739,9 @@
 <polygon points="631.47,242.57 642.75,246.67 631.47,250.78 620.20,246.67" fill="#9be9a8"/>
 <polygon points="620.20,262.67 620.20,246.67 631.47,250.78 631.47,266.78" fill="#88cd93"/>
 <polygon points="631.47,266.78 631.47,250.78 642.75,246.67 642.75,262.67" fill="#72ac7c"/>
+<polygon points="657.78,250.57 669.06,254.67 657.78,258.78 646.51,254.67" fill="#9be9a8"/>
+<polygon points="646.51,262.67 646.51,254.67 657.78,258.78 657.78,266.78" fill="#88cd93"/>
+<polygon points="657.78,266.78 657.78,258.78 669.06,254.67 669.06,262.67" fill="#72ac7c"/>
 <polygon points="565.69,263.36 576.97,267.46 565.69,271.56 554.42,267.46" fill="#ebedf0"/>
 <polygon points="592.01,263.36 603.28,267.46 592.01,271.56 580.73,267.46" fill="#ebedf0"/>
 <polygon points="618.32,263.36 629.59,267.46 618.32,271.56 607.04,267.46" fill="#ebedf0"/>
@@ -747,13 +752,13 @@
 <polygon points="592.01,261.93 603.28,266.04 592.01,270.14 580.73,266.04" fill="#9be9a8"/>
 <polygon points="580.73,277.04 580.73,266.04 592.01,270.14 592.01,281.14" fill="#88cd93"/>
 <polygon points="592.01,281.14 592.01,270.14 603.28,266.04 603.28,277.04" fill="#72ac7c"/>
-<text x="697.25" y="14.00" text-anchor="end" font-family='-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif' font-size="34" font-weight="700" fill="#216e39">836</text>
+<text x="697.25" y="14.00" text-anchor="end" font-family='-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif' font-size="34" font-weight="700" fill="#216e39">839</text>
 <text x="697.25" y="26.00" text-anchor="end" font-family='-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif' font-size="10" fill="#59636e" letter-spacing="0.8">TOTAL CONTRIBUTIONS</text>
 <rect x="-92.09" y="222.09" width="12" height="17.21" rx="1" fill="#40c463"/>
 <text x="-86.09" y="257.30" text-anchor="middle" font-family='-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif' font-size="11" fill="#59636e">S</text>
-<rect x="-76.09" y="201.32" width="12" height="37.98" rx="1" fill="#40c463"/>
+<rect x="-76.09" y="200.73" width="12" height="38.57" rx="1" fill="#40c463"/>
 <text x="-70.09" y="257.30" text-anchor="middle" font-family='-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif' font-size="11" fill="#59636e">M</text>
-<rect x="-60.09" y="187.67" width="12" height="51.63" rx="1" fill="#40c463"/>
+<rect x="-60.09" y="187.37" width="12" height="51.92" rx="1" fill="#40c463"/>
 <text x="-54.09" y="257.30" text-anchor="middle" font-family='-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif' font-size="11" fill="#59636e">T</text>
 <rect x="-44.09" y="192.42" width="12" height="46.88" rx="1" fill="#40c463"/>
 <text x="-38.09" y="257.30" text-anchor="middle" font-family='-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif' font-size="11" fill="#59636e">W</text>
