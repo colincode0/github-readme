@@ -782,6 +782,7 @@
 <polygon points="646.51,253.09 646.51,242.09 657.78,246.20 657.78,257.20" fill="#0c3b24"/>
 <polygon points="657.78,257.20 657.78,246.20 669.06,242.09 669.06,253.09" fill="#0a321e"/>
 <polygon points="618.32,253.78 629.59,257.88 618.32,261.99 607.04,257.88" fill="#161b22"/>
+<polygon points="670.94,253.78 682.22,257.88 670.94,261.99 659.66,257.88" fill="#161b22"/>
 <polygon points="539.38,238.78 550.66,242.88 539.38,246.99 528.11,242.88" fill="#0e4429"/>
 <polygon points="528.11,257.88 528.11,242.88 539.38,246.99 539.38,261.99" fill="#0c3b24"/>
 <polygon points="539.38,261.99 539.38,246.99 550.66,242.88 550.66,257.88" fill="#0a321e"/>
@@ -824,7 +825,7 @@
 <polygon points="592.01,258.93 603.28,263.04 592.01,267.14 580.73,263.04" fill="#0e4429"/>
 <polygon points="580.73,277.04 580.73,263.04 592.01,267.14 592.01,281.14" fill="#0c3b24"/>
 <polygon points="592.01,281.14 592.01,267.14 603.28,263.04 603.28,277.04" fill="#0a321e"/>
-<text x="697.25" y="14.00" text-anchor="end" font-family='-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif' font-size="34" font-weight="700" fill="#39d353">1,123</text>
+<text x="697.25" y="14.00" text-anchor="end" font-family='-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif' font-size="34" font-weight="700" fill="#39d353">1,117</text>
 <text x="697.25" y="26.00" text-anchor="end" font-family='-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif' font-size="10" fill="#7d8590" letter-spacing="0.8">TOTAL CONTRIBUTIONS</text>
 <rect x="-92.09" y="216.37" width="12" height="22.93" rx="1" fill="#006d32"/>
 <text x="-86.09" y="257.30" text-anchor="middle" font-family='-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif' font-size="11" fill="#7d8590">S</text>
